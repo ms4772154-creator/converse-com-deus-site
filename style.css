@@ -134,6 +134,17 @@ body{font-family:var(--font2);background:var(--bg);color:var(--text);min-height:
 .panel-title{font-family:var(--font);font-size:1rem;color:var(--brown);margin-bottom:10px}
 .journal-item{padding:8px;border:1px solid var(--border);border-radius:var(--r-sm);margin-bottom:6px;font-size:.8rem;color:var(--text2);background:var(--cream,#FFF9F0)}
 
+/* Modals */
+.modal-box{background:var(--cream,#FFF9F0);border-radius:var(--r-lg);padding:28px;max-width:400px;width:90%;box-shadow:0 8px 30px rgba(0,0,0,.2);animation:slideUp .3s}
+.modal-box h3{font-family:var(--font);font-size:1.3rem;color:var(--brown);margin-bottom:16px}
+.modal-btn{width:100%;padding:12px;border-radius:var(--r-md);border:none;background:var(--brown);color:var(--cream,#FFF9F0);font-size:.9rem;cursor:pointer;margin-bottom:8px;font-family:var(--font2)}
+.modal-btn:hover{opacity:.85}
+.modal-btn.secondary{background:var(--bg2);color:var(--text)}
+.share-card{background:linear-gradient(135deg,#3E2C1C,#6B4E37);border-radius:var(--r-lg);padding:24px;text-align:center;color:#fff;margin-bottom:16px}
+.share-icon{font-size:36px;margin-bottom:12px}
+.share-text{font-family:var(--font);font-size:1rem;line-height:1.6;margin-bottom:8px;font-style:italic}
+.share-ref{font-size:.82rem;opacity:.7;margin-bottom:12px}
+
 /* Responsive */
 @media(max-width:768px){
     .sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);z-index:20}

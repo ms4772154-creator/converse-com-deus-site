@@ -184,6 +184,44 @@ $('#prayer-btn').onclick=()=>{const p=PRAYERS[Math.floor(Math.random()*PRAYERS.l
 $('#prayer-close').onclick=()=>$('#prayer-overlay').classList.add('hidden');
 $('#prayer-overlay').onclick=e=>{if(e.target.id==='prayer-overlay')$('#prayer-overlay').classList.add('hidden')};
 
+// Export
+function getConvText(){
+    let t=`═══ Converse com Deus ═══\nConversa de ${state.userName}\nData: ${new Date().toLocaleDateString('pt-BR')}\n═══════════════════════\n\n`;
+    $$('.msg').forEach(m=>{
+        const isUser=m.classList.contains('user');
+        const b=m.querySelector('.msg-bubble');
+        if(b)t+=`${isUser?state.userName:'Deus'}: ${b.textContent.trim()}\n\n`;
+    });
+    t+=`═══════════════════════\n"Porque Deus amou o mundo"\n— João 3:16`;
+    return t;
+}
+$('#export-txt')?.addEventListener('click',()=>{
+    const blob=new Blob([getConvText()],{type:'text/plain;charset=utf-8'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=`converse-com-deus-${new Date().toISOString().slice(0,10)}.txt`;a.click();
+    $('#export-overlay').classList.add('hidden');
+});
+$('#export-copy')?.addEventListener('click',()=>{
+    navigator.clipboard.writeText(getConvText());
+    $('#export-copy').textContent='✅ Copiado!';setTimeout(()=>$('#export-copy').textContent='📋 Copiar',2000);
+});
+$('#export-share')?.addEventListener('click',()=>{
+    const last=$$('.msg.assistant .msg-bubble');
+    if(last.length){const b=last[last.length-1].textContent;$('#share-text').textContent=b.slice(0,200);$('#share-ref').textContent='Converse com Deus 🕊️';$('#share-overlay').classList.remove('hidden')}
+    $('#export-overlay').classList.add('hidden');
+});
+$('#export-close')?.addEventListener('click',()=>$('#export-overlay').classList.add('hidden'));
+$('#export-overlay')?.addEventListener('click',e=>{if(e.target.id==='export-overlay')$('#export-overlay').classList.add('hidden')});
+$('#share-copy')?.addEventListener('click',()=>{
+    navigator.clipboard.writeText(`${$('#share-text').textContent}\n— ${$('#share-ref').textContent}`);
+    $('#share-copy').textContent='✅ Copiado!';setTimeout(()=>$('#share-copy').textContent='📋 Copiar Texto',2000);
+});
+$('#share-close')?.addEventListener('click',()=>$('#share-overlay').classList.add('hidden'));
+$('#share-overlay')?.addEventListener('click',e=>{if(e.target.id==='share-overlay')$('#share-overlay').classList.add('hidden')});
+
+// Open export from chat header
+document.querySelector('.chat-header')?.addEventListener('dblclick',()=>$('#export-overlay').classList.remove('hidden'));
+
 // Voice
 let recognition=null,isRecording=false;
 if(window.SpeechRecognition||window.webkitSpeechRecognition){
