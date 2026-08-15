@@ -85,7 +85,8 @@ function generateResponse(message, userName) {
         const gender = detectGender(userName);
         const title = gender === "m" ? `Meu filho ${userName}` : `Minha filha ${userName}`;
         const titleComma = gender === "m" ? `Meu filho ${userName},` : `Minha filha ${userName},`;
-        if (userName in response) return response;
+        // Se o nome já está na resposta, não fazer nada
+        if (response.includes(userName)) return response;
         for (const old of ["Meu filho,","Minha filha,","meu filho,","minha filha,"]) {
             if (response.includes(old)) { response = response.replace(old, titleComma, 1); break; }
         }
