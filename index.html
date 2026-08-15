@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converse com Deus 🕊️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕊️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash" class="splash">
+        <div class="splash-content">
+            <div class="splash-icon">🕊️</div>
+            <div class="splash-dev">Desenvolvido por</div>
+            <div class="splash-name">Matheus Reynolds</div>
+        </div>
+    </div>
+
+    <!-- Particles -->
+    <canvas id="particles"></canvas>
+
+    <!-- Welcome -->
+    <div id="welcome" class="welcome">
+        <div class="welcome-inner">
+            <div class="welcome-icon">🕊️</div>
+            <h1>Converse com Deus</h1>
+            <p>Um momento de paz, sabedoria e conexão</p>
+            <div id="verse-day" class="verse-day"></div>
+            <label>Como posso te chamar?</label>
+            <input type="text" id="name-input" placeholder="Seu nome..." maxlength="50">
+            <button id="start-btn" disabled>Iniciar Conversa →</button>
+            <p class="welcome-verse"><em>"Chama-me, e eu te responderei"</em><br><span>— Jeremias 33:3</span></p>
+        </div>
+    </div>
+
+    <!-- Chat App -->
+    <div id="app" class="app hidden">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <span class="logo">🕊️ Converse com Deus</span>
+                <button id="new-chat" class="btn-icon">+</button>
+            </div>
+            <div class="sidebar-nav">
+                <button class="nav active" data-tab="chat">💬</button>
+                <button class="nav" data-tab="quiz">❓</button>
+                <button class="nav" data-tab="journal">📓</button>
+                <button class="nav" data-tab="mood">😊</button>
+            </div>
+            <div id="chat-list" class="sidebar-list"></div>
+            <div id="quiz-panel" class="sidebar-panel hidden"></div>
+            <div id="journal-panel" class="sidebar-panel hidden"></div>
+            <div id="mood-panel" class="sidebar-panel hidden"></div>
+            <div class="sidebar-footer">
+                <span id="user-name-display">Meu Filho</span>
+                <div class="footer-btns">
+                    <button id="theme-btn" class="btn-sm">🌙</button>
+                    <button id="prayer-btn" class="btn-sm">🙏</button>
+                </div>
+            </div>
+        </aside>
+        <button id="menu-btn" class="menu-btn">☰</button>
+        <main class="chat-main">
+            <div class="chat-header">
+                <span class="header-icon">✨</span>
+                <div><h2>Conversa com Deus</h2><small>Online — pronto para ouvir</small></div>
+            </div>
+            <div id="messages" class="messages"></div>
+            <div class="input-area">
+                <div class="input-wrap">
+                    <textarea id="msg-input" placeholder="Escreva sua mensagem..." rows="1"></textarea>
+                    <button id="voice-btn" class="btn-voice">🎙️</button>
+                    <button id="send-btn" class="btn-send" disabled>➤</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Prayer Mode -->
+    <div id="prayer-overlay" class="overlay hidden">
+        <button id="prayer-close" class="close-btn">✕</button>
+        <div class="prayer-center">
+            <div class="prayer-icon">🙏</div>
+            <p id="prayer-text" class="prayer-text"></p>
+            <small id="prayer-verse" class="prayer-verse"></small>
+        </div>
+    </div>
+
+    <!-- Credit -->
+    <div class="credit">
+        <img src="signature.png" alt="Matheus Reynolds" class="credit-img">
+    </div>
+
+    <script src="ai.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
