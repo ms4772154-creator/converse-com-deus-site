@@ -13,11 +13,25 @@ addEventListener('resize',initParticles);initParticles();drawParticles();
 // Splash
 setTimeout(()=>$('#splash').remove(),3500);
 
-// Verse of Day
-const VERSES=[{t:"O Senhor é meu pastor; nada me faltará.",r:"Salmo 23:1"},{t:"Confia no Senhor de todo o teu coração.",r:"Provérbios 3:5"},{t:"Não temas, porque eu sou contigo.",r:"Isaías 41:10"},{t:"Porque Deus amou o mundo.",r:"João 3:16"},{t:"Posso todas as coisas naquele que me fortalece.",r:"Filipenses 4:13"},{t:"A paz vos deixo, a minha paz vos dou.",r:"João 14:27"},{t:"Deus é o nosso refúgio e fortaleza.",r:"Salmos 46:1"},{t:"Clama a mim, e responder-te-ei.",r:"Jeremias 33:3"},{t:"Deus é amor.",r:"1 João 4:8"},{t:"Busque primeiro o reino de Deus.",r:"Mateus 6:33"}];
-const d=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/864e5);
-const v=VERSES[d%VERSES.length];
+// Verse of Day — muda a cada refresh
+const VERSES=[{t:"O Senhor é meu pastor; nada me faltará.",r:"Salmo 23:1"},{t:"Confia no Senhor de todo o teu coração.",r:"Provérbios 3:5"},{t:"Não temas, porque eu sou contigo.",r:"Isaías 41:10"},{t:"Porque Deus amou o mundo.",r:"João 3:16"},{t:"Posso todas as coisas naquele que me fortalece.",r:"Filipenses 4:13"},{t:"A paz vos deixo, a minha paz vos dou.",r:"João 14:27"},{t:"Deus é o nosso refúgio e fortaleza.",r:"Salmos 46:1"},{t:"Clama a mim, e responder-te-ei.",r:"Jeremias 33:3"},{t:"Deus é amor.",r:"1 João 4:8"},{t:"Busque primeiro o reino de Deus.",r:"Mateus 6:33"},{t:"O Senhor está perto dos que têm o coração quebrantado.",r:"Salmos 34:18"},{t:"Enxugará toda lágrima dos seus olhos.",r:"Apocalipse 21:4"},{t:"Lançando sobre ele todo o vosso cuidado.",r:"1 Pedro 5:7"},{t:"Os que esperam no Senhor renovarão as forças.",r:"Isaías 40:31"},{t:"Eu sou o caminho, a verdade e a vida.",r:"João 14:6"},{t:"Deus é o nosso refúgio e fortaleza, um socorro bem presente.",r:"Salmos 46:1"},{t:"Somos feitura dele, criados para boas obras.",r:"Efésios 2:10"},{t:"Não te deixarei, nem te desampararei.",r:"Hebreus 13:5"},{t:"Teme a Deus, e guarda os seus mandamentos.",r:"Eclesiastes 12:13"},{t:"Aquele que não ama não conheceu a Deus.",r:"1 João 4:8"}];
+const v=VERSES[Math.floor(Math.random()*VERSES.length)];
 $('#verse-day').innerHTML=`"${v.t}"<span class="ref">— ${v.r}</span>`;
+
+// Streak
+function updateStreak(){
+    const today=new Date().toDateString();
+    const last=localStorage.getItem('streak-day');
+    let count=parseInt(localStorage.getItem('streak-count')||'0');
+    if(last!==today){
+        const yesterday=new Date(Date.now()-864e5).toDateString();
+        count=(last===yesterday)?count+1:1;
+        localStorage.setItem('streak-day',today);
+        localStorage.setItem('streak-count',count);
+    }
+    $('#streak-count').textContent=count;
+}
+updateStreak();
 
 // Theme
 function applyTheme(t){document.documentElement.setAttribute('data-theme',t);$('#theme-btn').textContent=t==='dark'?'☀️':'🌙';localStorage.setItem('theme',t);state.theme=t}
