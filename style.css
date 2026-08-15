@@ -52,6 +52,8 @@ body{font-family:var(--font2);background:var(--bg);color:var(--text);min-height:
 .sidebar-footer{padding:14px 16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:.88rem;font-weight:500}
 .footer-btns{display:flex;gap:4px}
 .btn-sm{width:30px;height:30px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--bg);cursor:pointer;font-size:14px}
+.streak{font-size:14px;position:relative;cursor:default}
+#streak-count{position:absolute;top:-6px;right:-8px;background:#e74c3c;color:#fff;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
 .menu-btn{position:fixed;top:14px;left:14px;z-index:25;width:40px;height:40px;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--border);cursor:pointer;display:none;font-size:20px}
 
 /* Chat */
